@@ -1,453 +1,463 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wicked Cask LLC - Building Tomorrow's Industry Leaders</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Arial', sans-serif;
-      background: linear-gradient(135deg, #1a1a1a 0%, #2d1b3d 50%, #1a1a1a 100%);
-      color: #ffffff;
-      overflow-x: hidden;
-      line-height: 1.6;
-    }
-
-    .container {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      position: relative;
-    }
-
-    .background-animation {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      opacity: 0.1;
-    }
-
-    .floating-shapes {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-    }
-
-    .shape {
-      position: absolute;
-      border-radius: 50%;
-      background: linear-gradient(45deg, #8b5a3c, #d4af37);
-      animation: float 20s infinite linear;
-    }
-
-    .shape:nth-child(1) {
-      width: 80px;
-      height: 80px;
-      top: 20%;
-      left: 10%;
-      animation-delay: 0s;
-    }
-
-    .shape:nth-child(2) {
-      width: 120px;
-      height: 120px;
-      top: 60%;
-      right: 15%;
-      animation-delay: -5s;
-    }
-
-    .shape:nth-child(3) {
-      width: 60px;
-      height: 60px;
-      bottom: 20%;
-      left: 20%;
-      animation-delay: -10s;
-    }
-
-    @keyframes float {
-      0% {
-        transform: translateY(0px) rotate(0deg);
-        opacity: 0.3;
-      }
-
-      25% {
-        transform: translateY(-20px) rotate(90deg);
-        opacity: 0.7;
-      }
-
-      50% {
-        transform: translateY(-40px) rotate(180deg);
-        opacity: 0.3;
-      }
-
-      75% {
-        transform: translateY(-20px) rotate(270deg);
-        opacity: 0.7;
-      }
-
-      100% {
-        transform: translateY(0px) rotate(360deg);
-        opacity: 0.3;
-      }
-    }
-
-    header {
-      padding: 2rem 5%;
-      position: relative;
-      z-index: 100;
-    }
-
-    .logo {
-      font-size: 2.5rem;
-      font-weight: bold;
-      color: #d4af37;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-      letter-spacing: 2px;
-      animation: glow 3s ease-in-out infinite alternate;
-    }
-
-    @keyframes glow {
-      from {
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5), 0 0 10px #d4af37;
-      }
-
-      to {
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5), 0 0 20px #d4af37, 0 0 30px #d4af37;
-      }
-    }
-
-    main {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 2rem 5%;
-      position: relative;
-    }
-
-    .hero-section {
-      max-width: 1200px;
-      margin-bottom: 4rem;
-    }
-
-    .hero-title {
-      font-size: 3.5rem;
-      font-weight: 800;
-      margin-bottom: 1rem;
-      background: linear-gradient(45deg, #d4af37, #8b5a3c, #d4af37);
-      background-size: 200% 200%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      animation: gradientShift 4s ease-in-out infinite;
-    }
-
-    @keyframes gradientShift {
-
-      0%,
-      100% {
-        background-position: 0% 50%;
-      }
-
-      50% {
-        background-position: 100% 50%;
-      }
-    }
-
-    .hero-subtitle {
-      font-size: 1.4rem;
-      color: #cccccc;
-      margin-bottom: 2rem;
-      font-weight: 300;
-    }
-
-    .vision-statement {
-      font-size: 1.2rem;
-      color: #e0e0e0;
-      max-width: 800px;
-      margin: 0 auto 3rem auto;
-      line-height: 1.8;
-      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-    }
-
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      margin: 3rem 0;
-      max-width: 1000px;
-    }
-
-    .feature-card {
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 15px;
-      padding: 2rem;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .feature-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
-      transition: left 0.5s ease;
-    }
-
-    .feature-card:hover::before {
-      left: 100%;
-    }
-
-    .feature-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 20px 40px rgba(212, 175, 55, 0.2);
-    }
-
-    .feature-icon {
-      font-size: 3rem;
-      color: #d4af37;
-      margin-bottom: 1rem;
-    }
-
-    .feature-title {
-      font-size: 1.4rem;
-      font-weight: 600;
-      margin-bottom: 1rem;
-      color: #ffffff;
-    }
-
-    .feature-description {
-      color: #cccccc;
-      line-height: 1.6;
-    }
-
-    .cta-section {
-      margin-top: 4rem;
-    }
-
-    .cta-button {
-      display: inline-block;
-      padding: 1.2rem 3rem;
-      background: linear-gradient(45deg, #d4af37, #8b5a3c);
-      color: white;
-      text-decoration: none;
-      border-radius: 50px;
-      font-size: 1.2rem;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .cta-button::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-      transition: left 0.5s ease;
-    }
-
-    .cta-button:hover::before {
-      left: 100%;
-    }
-
-    .cta-button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 15px 40px rgba(212, 175, 55, 0.4);
-      background: linear-gradient(45deg, #8b5a3c, #d4af37);
-    }
-
-    footer {
-      padding: 2rem 5%;
-      text-align: center;
-      color: #888888;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .tagline {
-      font-style: italic;
-      color: #d4af37;
-      margin-bottom: 1rem;
-    }
-
-    @media (max-width: 768px) {
-      .hero-title {
-        font-size: 2.5rem;
-      }
-
-      .hero-subtitle {
-        font-size: 1.2rem;
-      }
-
-      .vision-statement {
-        font-size: 1rem;
-      }
-
-      .features-grid {
-        grid-template-columns: 1fr;
-      }
-
-      main {
-        padding: 1rem 5%;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wicked Cask LLC - Strategic Holdings</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', serif;
+            background: #0a0a0a;
+            color: #e0e0e0;
+            overflow-x: hidden;
+            line-height: 1.4;
+        }
+        
+        .container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            background: linear-gradient(180deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
+        }
+        
+        .grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.03;
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: 1;
+        }
+        
+        header {
+            padding: 3rem 5%;
+            position: relative;
+            z-index: 100;
+            border-bottom: 1px solid #333;
+        }
+        
+        .logo {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #00ff41;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-family: 'Arial Black', sans-serif;
+            text-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .logo:hover {
+            text-shadow: 0 0 20px rgba(0, 255, 65, 0.5);
+        }
+        
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 4rem 5%;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .hero-section {
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: left;
+        }
+        
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            color: #ffffff;
+            font-family: 'Arial Black', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            line-height: 0.9;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: #888888;
+            margin-bottom: 3rem;
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        .vision-statement {
+            font-size: 1.4rem;
+            color: #cccccc;
+            max-width: 900px;
+            margin-bottom: 4rem;
+            line-height: 1.6;
+            font-weight: 400;
+            border-left: 3px solid #00ff41;
+            padding-left: 2rem;
+        }
+        
+        .power-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1px;
+            margin: 4rem 0;
+            background: #333;
+        }
+        
+        .metric-card {
+            background: #1a1a1a;
+            padding: 3rem 2rem;
+            text-align: center;
+            border: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .metric-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #00ff41;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .metric-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .metric-card:hover {
+            background: #222;
+            transform: translateY(-5px);
+        }
+        
+        .metric-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #00ff41;
+            margin-bottom: 0.5rem;
+            font-family: 'Arial Black', sans-serif;
+        }
+        
+        .metric-label {
+            font-size: 1rem;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+        
+        .sectors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+        
+        .sector-card {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            border: 1px solid #333;
+            padding: 2.5rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .sector-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 3px;
+            height: 100%;
+            background: #00ff41;
+            transform: scaleY(0);
+            transition: transform 0.4s ease;
+        }
+        
+        .sector-card:hover::after {
+            transform: scaleY(1);
+        }
+        
+        .sector-card:hover {
+            background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+            border-color: #00ff41;
+            transform: translateX(10px);
+        }
+        
+        .sector-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .sector-description {
+            color: #aaa;
+            line-height: 1.5;
+            font-size: 1.1rem;
+        }
+        
+        .dominance-statement {
+            text-align: center;
+            margin: 5rem 0;
+            padding: 3rem;
+            background: #111;
+            border: 1px solid #333;
+            position: relative;
+        }
+        
+        .dominance-statement::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 100px;
+            height: 2px;
+            background: #00ff41;
+            transform: translateX(-50%);
+        }
+        
+        .dominance-text {
+            font-size: 2rem;
+            color: #ffffff;
+            font-weight: 600;
+            font-style: italic;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .contact-section {
+            margin-top: 5rem;
+            padding: 3rem;
+            background: #0f0f0f;
+            border: 1px solid #333;
+            text-align: center;
+        }
+        
+        .contact-title {
+            font-size: 2rem;
+            color: #ffffff;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .contact-item {
+            padding: 1.5rem;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-item:hover {
+            border-color: #00ff41;
+            background: #222;
+        }
+        
+        .contact-label {
+            font-size: 0.9rem;
+            color: #00ff41;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+        
+        .contact-value {
+            font-size: 1.2rem;
+            color: #ffffff;
+            font-weight: 600;
+        }
+        
+        footer {
+            padding: 2rem 5%;
+            text-align: center;
+            background: #000;
+            border-top: 1px solid #333;
+            color: #666;
+        }
+        
+        .footer-text {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+                letter-spacing: 2px;
+            }
+            
+            .vision-statement {
+                font-size: 1.1rem;
+                padding-left: 1rem;
+            }
+            
+            .power-metrics {
+                grid-template-columns: 1fr;
+            }
+            
+            .sectors-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            main {
+                padding: 2rem 5%;
+            }
+        }
+    </style>
 </head>
-
 <body>
-  <div class="container">
-    <div class="background-animation">
-      <div class="floating-shapes">
-        <div class="shape"></div>
-        <div class="shape"></div>
-        <div class="shape"></div>
-      </div>
+    <div class="container">
+        <div class="grid-overlay"></div>
+        
+        <header>
+            <div class="logo">WICKED CASK LLC</div>
+        </header>
+        
+        <main>
+            <section class="hero-section">
+                <h1 class="hero-title">Strategic<br>Dominance<br>Across Industries</h1>
+                <p class="hero-subtitle">Multi-Sector Holdings • Market Control • Economic Influence</p>
+                
+                <div class="vision-statement">
+                    Wicked Cask LLC operates as a strategic holding company, systematically acquiring and developing businesses across critical industry sectors. We don't just participate in markets—we reshape them. Through calculated expansion and ruthless efficiency, we create American jobs while establishing unassailable market positions in every sector we choose to dominate.
+                </div>
+            </section>
+            
+            <section class="power-metrics">
+                <div class="metric-card">
+                    <div class="metric-number">∞</div>
+                    <div class="metric-label">Growth Potential</div>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-number">100%</div>
+                    <div class="metric-label">Market Focus</div>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-number">24/7</div>
+                    <div class="metric-label">Strategic Planning</div>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-number">#1</div>
+                    <div class="metric-label">Industry Position</div>
+                </div>
+            </section>
+            
+            <section class="sectors-grid">
+                <div class="sector-card">
+                    <h3 class="sector-title">Market Penetration</h3>
+                    <p class="sector-description">Identifying undervalued assets and market inefficiencies. We enter sectors not as followers, but as disruptors who redefine industry standards and eliminate weak competition.</p>
+                </div>
+                
+                <div class="sector-card">
+                    <h3 class="sector-title">Strategic Acquisition</h3>
+                    <p class="sector-description">Systematic consolidation of market share through calculated acquisitions. Every purchase strengthens our position and eliminates potential threats to our dominance.</p>
+                </div>
+                
+                <div class="sector-card">
+                    <h3 class="sector-title">Operational Excellence</h3>
+                    <p class="sector-description">Implementing ruthless efficiency standards and performance metrics. We optimize every aspect of operations to maximize returns and maintain competitive superiority.</p>
+                </div>
+            </section>
+            
+            <section class="dominance-statement">
+                <div class="dominance-text">"Power is not revealed by striking hard or often, but by striking true."</div>
+            </section>
+            
+            <section class="contact-section">
+                <h2 class="contact-title">Strategic Partnerships</h2>
+                <p style="color: #aaa; margin-bottom: 2rem;">For serious inquiries only. We engage with entities that share our commitment to excellence and market dominance.</p>
+                
+                <div class="contact-grid">
+                    <div class="contact-item">
+                        <div class="contact-label">Executive Office</div>
+                        <div class="contact-value">executive@wickedcask.com</div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-label">Strategic Partnerships</div>
+                        <div class="contact-value">partnerships@wickedcask.com</div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-label">Investment Relations</div>
+                        <div class="contact-value">capital@wickedcask.com</div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-label">Direct Line</div>
+                        <div class="contact-value">+1 (555) 000-CASK</div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <footer>
+            <div class="footer-text">© 2024 Wicked Cask LLC. All Rights Reserved. Market Leadership Through Strategic Excellence.</div>
+        </footer>
     </div>
 
-    <header>
-      <div class="logo">WICKED CASK LLC</div>
-    </header>
-
-    <main>
-      <section class="hero-section">
-        <h1 class="hero-title">Building Tomorrow's Industry Leaders</h1>
-        <p class="hero-subtitle">Multi-Sector Holdings | Strategic Growth | American Excellence</p>
-
-        <div class="vision-statement">
-          Wicked Cask LLC is a dynamic holding company dedicated to launching and expanding businesses across diverse
-          industries. We fuel growth, create American jobs, and establish ourselves as leaders in every sector we enter.
-          Our vision is ambitious, our execution is strategic, and our commitment to excellence is unwavering.
-        </div>
-      </section>
-
-      <section class="features-grid">
-        <div class="feature-card">
-          <div class="feature-icon">🚀</div>
-          <h3 class="feature-title">Multi-Sector Expansion</h3>
-          <p class="feature-description">Strategically diversifying across industries to build a robust portfolio of
-            market-leading subsidiaries that drive innovation and economic growth.</p>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-icon">🏆</div>
-          <h3 class="feature-title">Industry Leadership</h3>
-          <p class="feature-description">Committed to becoming the benchmark for excellence in every sector we enter,
-            setting new standards and driving competitive advantage.</p>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-icon">🇺🇸</div>
-          <h3 class="feature-title">American Job Creation</h3>
-          <p class="feature-description">Focused on creating meaningful employment opportunities for Americans while
-            contributing to the strength and prosperity of our nation's economy.</p>
-        </div>
-      </section>
-
-      <section class="cta-section">
-        <div class="tagline">"Where Vision Meets Execution"</div>
-        <a href="#contact" class="cta-button" onclick="showContact()">Get In Touch</a>
-      </section>
-    </main>
-
-    <footer>
-      <p>&copy; 2024 Wicked Cask LLC. All rights reserved. | Building the future, one industry at a time.</p>
-    </footer>
-  </div>
-
-  <script>
-    // Contact button functionality
-    function showContact() {
-      const contactInfo = `
-                📧 Email: info@wickedcask.com
-                📞 Phone: (555) 123-CASK
-                🏢 Business Inquiries: partnerships@wickedcask.com
-                💼 Investment Opportunities: investors@wickedcask.com
-            `;
-
-      alert(`Contact Wicked Cask LLC:\n\n${contactInfo}\n\nWe look forward to discussing opportunities with you!`);
-    }
-
-    // Add dynamic particle effect on mouse movement
-    document.addEventListener('mousemove', function (e) {
-      const particle = document.createElement('div');
-      particle.style.position = 'fixed';
-      particle.style.left = e.clientX + 'px';
-      particle.style.top = e.clientY + 'px';
-      particle.style.width = '4px';
-      particle.style.height = '4px';
-      particle.style.background = 'rgba(212, 175, 55, 0.6)';
-      particle.style.borderRadius = '50%';
-      particle.style.pointerEvents = 'none';
-      particle.style.zIndex = '1000';
-      particle.style.animation = 'fadeOut 1s ease-out forwards';
-
-      document.body.appendChild(particle);
-
-      setTimeout(() => {
-        if (particle.parentNode) {
-          particle.parentNode.removeChild(particle);
-        }
-      }, 1000);
-    });
-
-    // Add fade-out animation for particles
-    const style = document.createElement('style');
-    style.textContent = `
-            @keyframes fadeOut {
-                0% { opacity: 1; transform: scale(1); }
-                100% { opacity: 0; transform: scale(0); }
-            }
-        `;
-    document.head.appendChild(style);
-
-    // Smooth scroll animation for elements coming into view
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
-        }
-      });
-    }, observerOptions);
-
-    // Observe feature cards for animation
-    document.addEventListener('DOMContentLoaded', () => {
-      const cards = document.querySelectorAll('.feature-card');
-      cards.forEach((card, index) => {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(30px)';
-        card.style.transition = `opacity 0.6s ease ${index * 0.2}s, transform 0.6s ease ${index * 0.2}s`;
-        observer.observe(card);
-      });
-    });
-  </script>
+    <script>
+        // Subtle hover effects for enhanced interactivity
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.sector-card, .metric-card, .contact-item');
+            
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transition = 'all 0.3s ease';
+                });
+            });
+            
+            // Add subtle parallax effect to grid overlay
+            document.addEventListener('mousemove', function(e) {
+                const overlay = document.querySelector('.grid-overlay');
+                const x = e.clientX / window.innerWidth;
+                const y = e.clientY / window.innerHeight;
+                
+                overlay.style.transform = `translate(${x * 10}px, ${y * 10}px)`;
+            });
+        });
+    </script>
 </body>
-
 </html>
